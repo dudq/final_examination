@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>City List</title>
+</head>
+<body>
+<a href="/create">Create New City</a>
+<h1>City List</h1>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<table border="1">
+    <tr>
+<!--        <th>Order</th>-->
+        <th>Name</th>
+        <th>Country</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="city : ${cities}">
+        <tr>
+<!--            <td th:text="${cities.index}"></td>-->
+            <td><a th:href="@{/view/__${city.id}__}" th:text="${city.name}"></a></td>
+            <td th:text="${city.country.name}"></td>
+            <td><a th:href="@{/edit/__${city.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete/__${city.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
